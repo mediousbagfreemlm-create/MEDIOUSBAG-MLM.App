@@ -1,0 +1,1187 @@
+--- FILE: build.gradle.kts (root project) ---
+plugins {
+    id("com.android.application") version "8.1.0" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.0" apply false
+}
+
+--- FILE: settings.gradle.kts ---
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "MediousBagMLMApp"
+include(":app")
+
+--- FILE: app/build.gradle.kts ---
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+}
+
+android {
+    namespace = "com.mediousbag.mlmapp"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.mediousbag.mlmapp"
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.espresso:espresso-core:3.5.1")
+}
+
+--- FILE: app/src/main/AndroidManifest.xml ---
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MediousBagMLMApp"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MediousBagMLMApp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity" android:exported="false"/>
+        <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity android:name=".DashboardActivity" android:exported="false"/>
+        <activity android:name=".TeamTreeActivity" android:exported="false"/>
+        <activity android:name=".WalletActivity" android:exported="false"/>
+        <activity android:name=".InvestmentActivity" android:exported="false"/>
+        <activity android:name=".PremiumActivity" android:exported="false"/>
+        <activity android:name=".ShopActivity" android:exported="false"/>
+        <activity android:name=".MyOrdersActivity" android:exported="false"/>
+--- FILE: build.gradle.kts (root project) ---
+plugins {
+    id("com.android.application") version "8.1.0" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.0" apply false
+}
+
+--- FILE: settings.gradle.kts ---
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "MediousBagMLMApp"
+include(":app")
+
+--- FILE: app/build.gradle.kts ---
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+}
+
+android {
+    namespace = "com.mediousbag.mlmapp"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.mediousbag.mlmapp"
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.espresso:espresso-core:3.5.1")
+}
+
+--- FILE: app/src/main/AndroidManifest.xml ---
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MediousBagMLMApp"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MediousBagMLMApp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity" android:exported="false"/>
+        <activity android:name=".LoginActivity" android:exported="false"/>
+        <activity android:name=".DashboardActivity" android:exported="false"/>
+        <activity android:name=".TeamTreeActivity" android:exported="false"/>
+        <activity android:name=".WalletActivity" android:exported="false"/>
+        <activity android:name=".InvestmentActivity" android:exported="false"/>
+        <activity android:name=".PremiumActivity" android:exported="false"/>
+        <activity android:name=".ShopActivity" android:exported="false"/>
+        <activity android:name=".MyOrdersActivity" android:exported="false"/>
+        <activity android:name=".MyInvestmentsActivity" android:exported="false"/>
+        <activity android:name=".MyWithdrawalsActivity" android:exported="false"/>
+        <activity android:name=".MyAccountActivity" android:exported="false"/>
+        <activity android:name=".MyPremiumActivity" android:exported="false"/>
+    </application>
+
+</manifest>
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MainActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val sharedPref = getSharedPreferences("mlm_prefs", MODE_PRIVATE)
+        val isLoggedIn = sharedPref.getString("token", null) != null
+        if (isLoggedIn) {
+            startActivity(Intent(this, DashboardActivity::class.java))
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        finish()
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/RegisterActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityRegisterBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRegisterBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnRegister.setOnClickListener {
+            val name = binding.etRealName.text.toString()
+            val mobile = binding.etMobile.text.toString()
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            val sponsor = binding.etSponsor.text.toString()
+
+            if (name.isEmpty() || mobile.isEmpty() || email.isEmpty() || password.isEmpty() || sponsor.isEmpty()) {
+                Toast.makeText(this, "कृपया सभी fields भरें", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val request = RegisterRequest(name, mobile, email, password, sponsor)
+            ApiClient.apiService.register(request).enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    if (response.isSuccessful && response.body()?.success == true) {
+                        Toast.makeText(this@RegisterActivity, "रजिस्ट्रेशन सफल", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this@RegisterActivity, response.body()?.message ?: "रजिस्ट्रेशन विफल", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    Toast.makeText(this@RegisterActivity, "त्रुटि: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/LoginActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityLoginBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnLogin.setOnClickListener {
+            val username = binding.etUsername.text.toString()
+            val password = binding.etPassword.text.toString()
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "कृपया सभी fields भरें", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val request = LoginRequest(username, password)
+            ApiClient.apiService.login(request).enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                    if (response.isSuccessful && response.body()?.success == true) {
+                        val sharedPref = getSharedPreferences("mlm_prefs", MODE_PRIVATE).edit()
+                        sharedPref.putString("token", response.body()?.token)
+                        sharedPref.apply()
+                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this@LoginActivity, response.body()?.message ?: "लॉगिन विफल", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Toast.makeText(this@LoginActivity, "त्रुटि: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
+        binding.tvRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/DashboardActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityDashboardBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class DashboardActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDashboardBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        loadDashboardData()
+
+        binding.btnTeamTree.setOnClickListener { startActivity(Intent(this, TeamTreeActivity::class.java)) }
+        binding.btnWallet.setOnClickListener { startActivity(Intent(this, WalletActivity::class.java)) }
+        binding.btnInvestment.setOnClickListener { startActivity(Intent(this, InvestmentActivity::class.java)) }
+        binding.btnPremium.setOnClickListener { startActivity(Intent(this, PremiumActivity::class.java)) }
+        binding.btnShop.setOnClickListener { startActivity(Intent(this, ShopActivity::class.java)) }
+        binding.btnMyOrders.setOnClickListener { startActivity(Intent(this, MyOrdersActivity::class.java)) }
+        binding.btnMyInvestments.setOnClickListener { startActivity(Intent(this, MyInvestmentsActivity::class.java)) }
+        binding.btnMyWithdrawals.setOnClickListener { startActivity(Intent(this, MyWithdrawalsActivity::class.java)) }
+        binding.btnMyAccount.setOnClickListener { startActivity(Intent(this, MyAccountActivity::class.java)) }
+        binding.btnMyPremium.setOnClickListener { startActivity(Intent(this, MyPremiumActivity::class.java)) }
+        binding.btnLogout.setOnClickListener {
+            getSharedPreferences("mlm_prefs", MODE_PRIVATE).edit().clear().apply()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+        binding.btnCopyReferral.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("Referral Link", binding.tvReferralLink.text)
+            clipboard.setPrimaryClip(clip)
+            Toast.makeText(this, "रेफरल लिंक कॉपी हो गया", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun loadDashboardData() {
+        ApiClient.apiService.getDashboard().enqueue(object : Callback<DashboardResponse> {
+            override fun onResponse(call: Call<DashboardResponse>, response: Response<DashboardResponse>) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    data?.let {
+                        binding.tvBalance.text = "₹${it.balance}"
+                        if (it.isPremium) binding.tvCharityBalance.text = "₹${it.charityBalance}" else binding.tvCharityBalance.visibility = GONE
+                        binding.tvReferralLink.text = it.referralLink
+                        binding.tvProfileName.text = it.profileName
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<DashboardResponse>, t: Throwable) {
+                Toast.makeText(this@DashboardActivity, "डेटा लोड करने में त्रुटि", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/TeamTreeActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.mediousbag.mlmapp.databinding.ActivityTeamTreeBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class TeamTreeActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityTeamTreeBinding
+    private val adapter = TeamTreeAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityTeamTreeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.rvTeamTree.layoutManager = LinearLayoutManager(this)
+        binding.rvTeamTree.adapter = adapter
+
+        ApiClient.apiService.getTeamTree().enqueue(object : Callback<TeamTreeResponse> {
+            override fun onResponse(call: Call<TeamTreeResponse>, response: Response<TeamTreeResponse>) {
+                if (response.isSuccessful) {
+                    adapter.submitList(response.body()?.tree)
+                }
+            }
+
+            override fun onFailure(call: Call<TeamTreeResponse>, t: Throwable) {
+                // Handle
+            }
+        })
+    }
+}
+
+class TeamTreeAdapter : androidx.recyclerview.widget.ListAdapter<TeamMember, androidx.recyclerview.widget.RecyclerView.ViewHolder>(DiffCallback()) {
+    // Implement ViewHolder, bind, etc. Use nested Recycler for sub levels or Expandable list
+    private class DiffCallback : androidx.recyclerview.widget.DiffUtil.ItemCallback<TeamMember>() {
+        override fun areItemsTheSame(oldItem: TeamMember, newItem: TeamMember): Boolean = oldItem.name == newItem.name
+        override fun areContentsTheSame(oldItem: TeamMember, newItem: TeamMember): Boolean = oldItem == newItem
+    }
+    // Add override fun onCreateViewHolder, onBindViewHolder
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/WalletActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.net.Uri
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityWalletBinding
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
+
+class WalletActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityWalletBinding
+    private var screenshotUri: Uri? = null
+
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        screenshotUri = uri
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityWalletBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Load balance and transactions from API
+
+        binding.btnUploadScreenshot.setOnClickListener { getContent.launch("image/*") }
+
+        binding.btnWithdraw.setOnClickListener {
+            val amount = binding.etAmount.text.toString().toDoubleOrNull() ?: 0.0
+            val bank = binding.etBankDetails.text.toString()
+            if (amount <= 0 || bank.isEmpty() || screenshotUri == null) {
+                Toast.makeText(this, "सभी fields भरें", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val file = File(contentResolver.openInputStream(screenshotUri!!)!!) // Simplify, use real path
+            val filePart = MultipartBody.Part.createFormData("verification_screenshot", file.name, file.asRequestBody("image/*".toMediaTypeOrNull()))
+            val amountBody = amount.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val bankBody = bank.toRequestBody("text/plain".toMediaTypeOrNull())
+
+            ApiClient.apiService.withdraw(amountBody, bankBody, filePart).enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    // Handle success
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    // Handle
+                }
+            })
+        }
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/InvestmentActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Similar to Wallet, list plans in RecyclerView, form for invest with file upload
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/PremiumActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Similar, list packages, purchase with upload
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/ShopActivity.kt ---
+package com.mediousbag.mlmapp
+
+// RecyclerView for products, each item with buy button and form
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyOrdersActivity.kt ---
+package com.mediousbag.mlmapp
+
+// RecyclerView for orders list from API
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyInvestmentsActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Similar list
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyWithdrawalsActivity.kt ---
+package com.mediousbag.mlmapp
+
+// List
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyAccountActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Profile edit, photo upload
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyPremiumActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Premium details
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/ApiService.kt ---
+package com.mediousbag.mlmapp
+
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
+
+interface ApiService {
+
+    @POST("register")
+    fun register(@Body request: RegisterRequest): Call<ApiResponse>
+
+    @POST("login")
+    fun login(@Body request: LoginRequest): Call<LoginResponse>
+
+    @GET("dashboard")
+    fun getDashboard(): Call<DashboardResponse>
+
+    @GET("team_tree")
+    fun getTeamTree(): Call<TeamTreeResponse>
+
+    @GET("wallet")
+    fun getWallet(): Call<WalletResponse>
+
+    @Multipart
+    @POST("withdraw")
+    fun withdraw(@Part("amount") amount: RequestBody, @Part("bank_details") bank: RequestBody, @Part file: MultipartBody.Part): Call<ApiResponse>
+
+    @GET("investments")
+    fun getInvestments(): Call<InvestmentResponse>
+
+    @Multipart
+    @POST("invest")
+    fun invest(@Part("plan_id") plan: RequestBody, @Part("amount") amount: RequestBody, @Part file: MultipartBody.Part): Call<ApiResponse>
+
+    // Add more for premium, shop, buy, orders, etc.
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/ApiClient.kt ---
+package com.mediousbag.mlmapp
+
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+object ApiClient {
+
+    private const val BASE_URL = "https://mediousbag.xyz/wp-json/mlm/v1/"
+
+    private val logging = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+
+    private val authInterceptor = okhttp3.Interceptor { chain ->
+        val request = chain.request().newBuilder()
+            .addHeader("Authorization", "Bearer ${getToken()}")
+            .build()
+        chain.proceed(request)
+    }
+
+    private val httpClient = OkHttpClient.Builder()
+        .addInterceptor(logging)
+        .addInterceptor(authInterceptor)
+        .build()
+
+    val apiService: ApiService by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(httpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiService::class.java)
+    }
+
+    private fun getToken(): String {
+        // Get from shared prefs
+        return ""
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/Models.kt ---
+package com.mediousbag.mlmapp
+
+data class RegisterRequest(val real_name: String, val mobile: String, val email: String, val password: String, val sponsor: String)
+data class LoginRequest(val username: String, val password: String)
+data class ApiResponse(val success: Boolean, val message: String?)
+data class LoginResponse(val success: Boolean, val message: String?, val token: String?)
+data class DashboardResponse(val balance: Double, val charityBalance: Double, val referralLink: String, val profileName: String, val isPremium: Boolean)
+data class TeamTreeResponse(val tree: List<TeamMember>)
+data class TeamMember(val name: String, val level: Int, val sub: List<TeamMember>)
+data class WalletResponse(val balance: Double, val transactions: List<Transaction>)
+data class Transaction(val amount: Double, val from: String, val date: String)
+// Add more models
+
+--- FILE: app/src/main/res/layout/activity_dashboard.xml ---
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView android:id="@+id/ivProfilePic" android:layout_width="60dp" android:layout_height="60dp" android:src="@drawable/ic_profile" />
+        <TextView android:id="@+id/tvProfileName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Name" />
+        <TextView android:id="@+id/tvBalance" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Balance: ₹0.00" />
+        <TextView android:id="@+id/tvCharityBalance" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Charity: ₹0.00" />
+        <EditText android:id="@+id/tvReferralLink" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="none" />
+        <Button android:id="@+id/btnCopyReferral" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Copy Referral" />
+        <Button android:id="@+id/btnTeamTree" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Team Tree" />
+        <Button android:id="@+id/btnWallet" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Wallet" />
+        <Button android:id="@+id/btnInvestment" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Investment" />
+        <Button android:id="@+id/btnPremium" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Premium" />
+        <Button android:id="@+id/btnShop" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Shop" />
+        <Button android:id="@+id/btnMyOrders" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="My Orders" />
+        <Button android:id="@+id/btnMyInvestments" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="My Investments" />
+        <Button android:id="@+id/btnMyWithdrawals" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="My Withdrawals" />
+        <Button android:id="@+id/btnMyAccount" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="My Account" />
+        <Button android:id="@+id/btnMyPremium" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="My Premium" />
+        <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Logout" />
+    </LinearLayout>
+</ScrollView>
+
+--- FILE: app/src/main/res/layout/activity_register.xml ---
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText android:id="@+id/etRealName" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Real Name" />
+    <EditText android:id="@+id/etMobile" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Mobile" />
+    <EditText android:id="@+id/etEmail" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Email" />
+    <EditText android:id="@+id/etPassword" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Password" android:inputType="textPassword" />
+    <EditText android:id="@+id/etSponsor" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Sponsor ID" />
+    <Button android:id="@+id/btnRegister" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Register" />
+</LinearLayout>
+
+--- FILE: app/src/main/res/layout/activity_login.xml ---
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText android:id="@+id/etUsername" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Username" />
+    <EditText android:id="@+id/etPassword" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Password" android:inputType="textPassword" />
+    <Button android:id="@+id/btnLogin" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Login" />
+    <TextView android:id="@+id/tvRegister" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Register" android:clickable="true" />
+</LinearLayout>
+
+--- FILE: app/src/main/res/layout/activity_team_tree.xml ---
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvTeamTree" android:layout_width="match_parent" android:layout_height="match_parent" />
+</LinearLayout>
+
+--- FILE: app/src/main/res/layout/activity_wallet.xml ---
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView android:id="@+id/tvBalance" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Balance: ₹0.00" />
+    <EditText android:id="@+id/etAmount" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Amount" android:inputType="numberDecimal" />
+    <EditText android:id="@+id/etBankDetails" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Bank Details" />
+    <Button android:id="@+id/btnUploadScreenshot" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Upload Screenshot" />
+    <Button android:id="@+id/btnWithdraw" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Withdraw" />
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvTransactions" android:layout_width="match_parent" android:layout_height="match_parent" />
+</LinearLayout>
+
+--- FILE: app/src/main/res/values/strings.xml ---
+<resources>
+    <string name="app_name">MediousBag MLM App</string>
+</resources>
+
+--- FILE: app/src/main/res/values/colors.xml ---
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#1A73E8</color>
+    <color name="secondary">#0D47A1</color>
+</resources>
+
+--- FILE: app/src/main/res/values/themes.xml ---
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MediousBagMLMApp" parent="Theme.Material3.DayNight.NoActionBar" />
+    <style name="Theme.MediousBagMLMApp" parent="Base.Theme.MediousBagMLMApp" />
+</resources>
+
+--- END OF ALL FILES ---￼Enter        <activity android:name=".MyInvestmentsActivity" android:exported="false"/>
+        <activity android:name=".MyWithdrawalsActivity" android:exported="false"/>
+        <activity android:name=".MyAccountActivity" android:exported="false"/>
+        <activity android:name=".MyPremiumActivity" android:exported="false"/>
+    </application>
+
+</manifest>
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MainActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val sharedPref = getSharedPreferences("mlm_prefs", MODE_PRIVATE)
+        val isLoggedIn = sharedPref.getString("token", null) != null
+        if (isLoggedIn) {
+            startActivity(Intent(this, DashboardActivity::class.java))
+        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        finish()
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/RegisterActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityRegisterBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRegisterBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnRegister.setOnClickListener {
+            val name = binding.etRealName.text.toString()
+            val mobile = binding.etMobile.text.toString()
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            val sponsor = binding.etSponsor.text.toString()
+
+            if (name.isEmpty() || mobile.isEmpty() || email.isEmpty() || password.isEmpty() || sponsor.isEmpty()) {
+                Toast.makeText(this, "कृपया सभी fields भरें", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val request = RegisterRequest(name, mobile, email, password, sponsor)
+            ApiClient.apiService.register(request).enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    if (response.isSuccessful && response.body()?.success == true) {
+                        Toast.makeText(this@RegisterActivity, "रजिस्ट्रेशन सफल", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this@RegisterActivity, response.body()?.message ?: "रजिस्ट्रेशन विफल", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    Toast.makeText(this@RegisterActivity, "त्रुटि: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/LoginActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityLoginBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class LoginActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLoginBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnLogin.setOnClickListener {
+            val username = binding.etUsername.text.toString()
+            val password = binding.etPassword.text.toString()
+
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "कृपया सभी fields भरें", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val request = LoginRequest(username, password)
+            ApiClient.apiService.login(request).enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                    if (response.isSuccessful && response.body()?.success == true) {
+                        val sharedPref = getSharedPreferences("mlm_prefs", MODE_PRIVATE).edit()
+                        sharedPref.putString("token", response.body()?.token)
+                        sharedPref.apply()
+                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this@LoginActivity, response.body()?.message ?: "लॉगिन विफल", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Toast.makeText(this@LoginActivity, "त्रुटि: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
+        binding.tvRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/DashboardActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityDashboardBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class DashboardActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDashboardBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityDashboardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        loadDashboardData()
+
+        binding.btnTeamTree.setOnClickListener { startActivity(Intent(this, TeamTreeActivity::class.java)) }
+        binding.btnWallet.setOnClickListener { startActivity(Intent(this, WalletActivity::class.java)) }
+        binding.btnInvestment.setOnClickListener { startActivity(Intent(this, InvestmentActivity::class.java)) }
+        binding.btnPremium.setOnClickListener { startActivity(Intent(this, PremiumActivity::class.java)) }
+        binding.btnShop.setOnClickListener { startActivity(Intent(this, ShopActivity::class.java)) }
+        binding.btnMyOrders.setOnClickListener { startActivity(Intent(this, MyOrdersActivity::class.java)) }
+        binding.btnMyInvestments.setOnClickListener { startActivity(Intent(this, MyInvestmentsActivity::class.java)) }
+        binding.btnMyWithdrawals.setOnClickListener { startActivity(Intent(this, MyWithdrawalsActivity::class.java)) }
+        binding.btnMyAccount.setOnClickListener { startActivity(Intent(this, MyAccountActivity::class.java)) }
+        binding.btnMyPremium.setOnClickListener { startActivity(Intent(this, MyPremiumActivity::class.java)) }
+        binding.btnLogout.setOnClickListener {
+            getSharedPreferences("mlm_prefs", MODE_PRIVATE).edit().clear().apply()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+        binding.btnCopyReferral.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("Referral Link", binding.tvReferralLink.text)
+            clipboard.setPrimaryClip(clip)
+      Toast.makeText(this, "रेफरल लिंक कॉपी हो गया", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun loadDashboardData() {
+        ApiClient.apiService.getDashboard().enqueue(object : Callback<DashboardResponse> {
+            override fun onResponse(call: Call<DashboardResponse>, response: Response<DashboardResponse>) {
+                if (response.isSuccessful) {
+                    val data = response.body()
+                    data?.let {
+                        binding.tvBalance.text = "₹${it.balance}"
+                        if (it.isPremium) binding.tvCharityBalance.text = "₹${it.charityBalance}" else binding.tvCharityBalance.visibility = GONE
+                        binding.tvReferralLink.text = it.referralLink
+                        binding.tvProfileName.text = it.profileName
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<DashboardResponse>, t: Throwable) {
+                Toast.makeText(this@DashboardActivity, "डेटा लोड करने में त्रुटि", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/TeamTreeActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.mediousbag.mlmapp.databinding.ActivityTeamTreeBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class TeamTreeActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityTeamTreeBinding
+    private val adapter = TeamTreeAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityTeamTreeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.rvTeamTree.layoutManager = LinearLayoutManager(this)
+        binding.rvTeamTree.adapter = adapter
+
+        ApiClient.apiService.getTeamTree().enqueue(object : Callback<TeamTreeResponse> {
+            override fun onResponse(call: Call<TeamTreeResponse>, response: Response<TeamTreeResponse>) {
+                if (response.isSuccessful) {
+                    adapter.submitList(response.body()?.tree)
+                }
+            }
+
+            override fun onFailure(call: Call<TeamTreeResponse>, t: Throwable) {
+                // Handle
+            }
+        })
+    }
+}
+
+class TeamTreeAdapter : androidx.recyclerview.widget.ListAdapter<TeamMember, androidx.recyclerview.widget.RecyclerView.ViewHolder>(DiffCallback()) {
+    // Implement ViewHolder, bind, etc. Use nested Recycler for sub levels or Expandable list
+    private class DiffCallback : androidx.recyclerview.widget.DiffUtil.ItemCallback<TeamMember>() {
+        override fun areItemsTheSame(oldItem: TeamMember, newItem: TeamMember): Boolean = oldItem.name == newItem.name
+        override fun areContentsTheSame(oldItem: TeamMember, newItem: TeamMember): Boolean = oldItem == newItem
+    }
+    // Add override fun onCreateViewHolder, onBindViewHolder
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/WalletActivity.kt ---
+package com.mediousbag.mlmapp
+
+import android.net.Uri
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.mediousbag.mlmapp.databinding.ActivityWalletBinding
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
+
+class WalletActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityWalletBinding
+    private var screenshotUri: Uri? = null
+
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        screenshotUri = uri
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityWalletBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Load balance and transactions from API
+
+        binding.btnUploadScreenshot.setOnClickListener { getContent.launch("image/*") }
+
+        binding.btnWithdraw.setOnClickListener {
+            val amount = binding.etAmount.text.toString().toDoubleOrNull() ?: 0.0
+            val bank = binding.etBankDetails.text.toString()
+            if (amount <= 0 || bank.isEmpty() || screenshotUri == null) {
+                Toast.makeText(this, "सभी fields भरें", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val file = File(contentResolver.openInputStream(screenshotUri!!)!!) // Simplify, use real path
+            val filePart = MultipartBody.Part.createFormData("verification_screenshot", file.name, file.asRequestBody("image/*".toMediaTypeOrNull()))
+            val amountBody = amount.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val bankBody = bank.toRequestBody("text/plain".toMediaTypeOrNull())
+
+            ApiClient.apiService.withdraw(amountBody, bankBody, filePart).enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                    // Handle success
+                }
+
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    // Handle
+                }
+            })
+        }
+    }
+}
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/InvestmentActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Similar to Wallet, list plans in RecyclerView, form for invest with file upload
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/PremiumActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Similar, list packages, purchase with upload
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/ShopActivity.kt ---
+package com.mediousbag.mlmapp
+
+// RecyclerView for products, each item with buy button and form
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyOrdersActivity.kt ---
+package com.mediousbag.mlmapp
+
+// RecyclerView for orders list from API
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyInvestmentsActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Similar list
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyWithdrawalsActivity.kt ---
+package com.mediousbag.mlmapp
+
+// List
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyAccountActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Profile edit, photo upload
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/MyPremiumActivity.kt ---
+package com.mediousbag.mlmapp
+
+// Premium details
+
+--- FILE: app/src/main/java/com/mediousbag/mlmapp/ApiService.kt ---
+package com.mediousbag.mlmapp
+
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
+
+interface ApiService {
+
+    @POST("register")
